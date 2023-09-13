@@ -6,13 +6,13 @@ services:
       context: ./docker/php
     container_name: symfony-demo-php
     working_dir: /var/www
-    user: 1000:1000
     volumes:
       - ./:/var/www
       - ./var/composer:/var/www/var/composer
     environment:
+      COMPOSER_HOME: /var/www/var/composer
       XDEBUG_CONFIG: client_host=${DOCKER_GATEWAY_HOST:-host.docker.internal}
-      PHP_IDE_CONFIG: serverName=api.symfony.demo
+      PHP_IDE_CONFIG: serverName=symfony
     env_file:
       - .env
 
