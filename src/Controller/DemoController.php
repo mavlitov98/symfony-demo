@@ -13,6 +13,6 @@ final class DemoController extends AbstractController
     #[Route(path: '/demo', methods: ['POST'])]
     public function demo(): Response
     {
-        return $this->json(['message' => 'Hello!']);
+        return $this->json(['message' => 'Hello from Demo!']);
     }
 }
