@@ -1,0 +1,18 @@
+coverage:
+    enabled: true
+    include:
+        - src/*
+
+namespace: App\Tests
+bootstrap: bootstrap.php
+paths:
+    tests: tests
+    output: tests/Codeception/Output
+    data: tests/Codeception/Data
+    support: tests/Codeception/Support
+    envs: tests/Codeception/Envs
+actor_suffix: Tester
+support_namespace: Codeception\Support
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed

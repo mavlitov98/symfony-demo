@@ -1,0 +1,12 @@
+actor: ApiTester
+suite_namespace: App\Tests\Api
+modules:
+  enabled:
+    - Asserts:
+    - Symfony:
+        app_path: 'src'
+        environment: 'test'
+    - REST:
+        url: http://localhost:8081/api
+        depends: Symfony
+        part: Json
