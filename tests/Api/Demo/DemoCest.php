@@ -12,7 +12,6 @@ class DemoCest
     {
         $I->sendPost('/demo');
         $I->seeResponseCodeIs(200);
-        $I->seeResponseIsJson();
         $I->seeResponseContainsJson(['message' => 'Hello from Demo!']);
     }
 }
