@@ -4,7 +4,7 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "symfony/asset": "6.3.*",
@@ -70,6 +70,8 @@
         "codeception/module-asserts": "^3.0",
         "codeception/module-rest": "*",
         "codeception/module-symfony": "^3.1",
-        "symfony/debug-bundle": "6.3.*"
+        "friendsofphp/php-cs-fixer": "^3.27",
+        "symfony/debug-bundle": "6.3.*",
+        "vimeo/psalm": "^5.15"
     }
 }
