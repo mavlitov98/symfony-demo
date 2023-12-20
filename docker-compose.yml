@@ -16,6 +16,11 @@ services:
       PHP_IDE_CONFIG: serverName=symfony
     env_file:
       - .env
+    depends_on:
+      symfony-demo-rabbitmq:
+        condition: service_healthy
+      symfony-demo-postgres:
+        condition: service_healthy
 
   symfony-demo-postgres:
     image: postgres:latest
@@ -29,6 +34,11 @@ services:
     ports:
       - "54322:5432"
     restart: always
+    healthcheck:
+      test: pg_isready -U root -d demo -p 5432
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   symfony-demo-nginx:
     container_name: symfony-demo-nginx
@@ -44,3 +54,23 @@ services:
       - symfony-demo-php
     env_file:
       - .env
+
+  symfony-demo-rabbitmq:
+    image: rabbitmq:3.8-management
+    container_name: symfony-demo-rabbitmq
+    volumes:
+      - symfony-demo-rabbitmq-data:/var/log/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: root
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  symfony-demo-rabbitmq-data:

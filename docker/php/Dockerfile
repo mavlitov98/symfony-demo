@@ -4,7 +4,7 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN apt-get update -y && apt-get install -y curl unzip
 
 RUN chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions xdebug pgsql pdo_pgsql
+    install-php-extensions xdebug pgsql pdo_pgsql amqp
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php \
