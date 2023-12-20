@@ -20,10 +20,20 @@ final readonly class TransactionHandler
 
     public function __invoke(TransactionMessage $message): void
     {
-        /** @var User $user */
-        $user = $this->entityManager->find(User::class, $message->userId);
-        $operation = new BalanceOperation(Uuid::v4(), $message->amount, $user, $message->type);
-        $this->entityManager->persist($operation);
-        $this->entityManager->flush();
+        $this->entityManager->beginTransaction();
+
+        try {
+            /** @var User $user */
+            $user = $this->entityManager->find(User::class, $message->userId);
+            $operation = new BalanceOperation(Uuid::v4(), $message->amount, $user, $message->type);
+            $this->entityManager->persist($operation);
+
+            $this->entityManager->commit();
+            $this->entityManager->flush();
+        } catch (\Throwable $e) {
+            $this->entityManager->rollback();
+
+            throw $e;
+        }
     }
 }
