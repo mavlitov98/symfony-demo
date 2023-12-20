@@ -7,7 +7,7 @@ namespace App\Tests\Api\Demo;
 use App\Tests\Codeception\Support\ApiTester;
 
 class DemoCest
-{    
+{
     public function demo(ApiTester $I): void
     {
         $I->sendPost('/demo');

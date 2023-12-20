@@ -13,3 +13,9 @@ php-bash:
 
 clear-cache:
 	docker-compose exec symfony-demo-php ./bin/console cache:clear
+
+psalm:
+	docker-compose exec symfony-demo-php ./vendor/bin/psalm
+
+csfix:
+	docker-compose exec symfony-demo-php ./vendor/bin/php-cs-fixer fix

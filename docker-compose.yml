@@ -6,6 +6,7 @@ services:
       context: ./docker/php
     container_name: symfony-demo-php
     working_dir: /var/www
+    user: 1000:1000
     volumes:
       - ./:/var/www
       - ./var/composer:/var/www/var/composer
